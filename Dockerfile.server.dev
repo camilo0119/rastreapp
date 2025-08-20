@@ -1,0 +1,20 @@
+# Dockerfile para desarrollo del servidor backend
+FROM node:18-alpine
+
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Copiar archivos de dependencias
+COPY package*.json ./
+
+# Instalar todas las dependencias (incluyendo devDependencies)
+RUN npm install
+
+# Copiar código fuente
+COPY . .
+
+# Exponer puerto
+EXPOSE 3001
+
+# Comando por defecto para desarrollo
+CMD ["npm", "run", "server:dev"]

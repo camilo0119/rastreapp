@@ -1,0 +1,552 @@
+{
+  "shipments": [
+    {
+      "id": "1",
+      "trackingNumber": "TMS001234",
+      "origin": "Madrid, España",
+      "destination": "Barcelona, España",
+      "status": "in-transit",
+      "priority": "high",
+      "weight": 850.5,
+      "customer": {
+        "name": "María González",
+        "email": "maria.gonzalez@example.com",
+        "phone": "+34 612 345 678"
+      },
+      "driver": {
+        "id": "1",
+        "name": "Carlos Martínez",
+        "phone": "+34 654 321 098",
+        "vehicle": "ABC-1234"
+      },
+      "estimatedDelivery": "2025-01-10T14:00:00Z",
+      "route": {
+        "distance": 621,
+        "estimatedTime": 360
+      },
+      "notes": ["Carga frágil - manejar con cuidado", "Entrega programada para mañana"],
+      "createdAt": "2025-01-08T08:30:00Z",
+      "updatedAt": "2025-01-09T12:15:00Z"
+    },
+    {
+      "id": "2",
+      "trackingNumber": "TMS001235",
+      "origin": "Valencia, España",
+      "destination": "Sevilla, España",
+      "status": "delivered",
+      "priority": "medium",
+      "weight": 1250.0,
+      "customer": {
+        "name": "José Rodríguez",
+        "email": "jose.rodriguez@example.com",
+        "phone": "+34 687 654 321"
+      },
+      "driver": {
+        "id": "2",
+        "name": "Ana López",
+        "phone": "+34 698 765 432",
+        "vehicle": "DEF-5678"
+      },
+      "estimatedDelivery": "2025-01-08T16:30:00Z",
+      "actualDelivery": "2025-01-08T15:45:00Z",
+      "route": {
+        "distance": 392,
+        "estimatedTime": 240
+      },
+      "notes": ["Entregado antes de tiempo", "Cliente muy satisfecho"],
+      "createdAt": "2025-01-06T09:00:00Z",
+      "updatedAt": "2025-01-08T15:45:00Z"
+    },
+    {
+      "id": "3",
+      "trackingNumber": "TMS001236",
+      "origin": "Bilbao, España",
+      "destination": "Zaragoza, España",
+      "status": "pending",
+      "priority": "low",
+      "weight": 450.75,
+      "customer": {
+        "name": "Luis Fernández",
+        "email": "luis.fernandez@example.com",
+        "phone": "+34 623 456 789"
+      },
+      "estimatedDelivery": "2025-01-12T10:00:00Z",
+      "route": {
+        "distance": 185,
+        "estimatedTime": 120
+      },
+      "notes": ["Pendiente asignación de conductor"],
+      "createdAt": "2025-01-09T07:20:00Z",
+      "updatedAt": "2025-01-09T07:20:00Z"
+    },
+    {
+      "id": "4",
+      "trackingNumber": "TMS001237",
+      "origin": "Málaga, España",
+      "destination": "Granada, España",
+      "status": "delayed",
+      "priority": "urgent",
+      "weight": 2100.25,
+      "customer": {
+        "name": "Carmen Jiménez",
+        "email": "carmen.jimenez@example.com",
+        "phone": "+34 645 678 912"
+      },
+      "driver": {
+        "id": "3",
+        "name": "Miguel Santos",
+        "phone": "+34 677 889 123",
+        "vehicle": "GHI-9012"
+      },
+      "estimatedDelivery": "2025-01-09T18:00:00Z",
+      "route": {
+        "distance": 126,
+        "estimatedTime": 90
+      },
+      "notes": ["Retraso por condiciones climáticas", "Cliente informado"],
+      "createdAt": "2025-01-08T11:30:00Z",
+      "updatedAt": "2025-01-09T16:20:00Z"
+    },
+    {
+      "id": "5",
+      "trackingNumber": "TMS001238",
+      "origin": "La Coruña, España",
+      "destination": "Vigo, España",
+      "status": "in-transit",
+      "priority": "medium",
+      "weight": 680.0,
+      "customer": {
+        "name": "Pedro Álvarez",
+        "email": "pedro.alvarez@example.com",
+        "phone": "+34 634 567 890"
+      },
+      "driver": {
+        "id": "4",
+        "name": "Laura Ruiz",
+        "phone": "+34 656 789 234",
+        "vehicle": "JKL-3456"
+      },
+      "estimatedDelivery": "2025-01-10T12:30:00Z",
+      "route": {
+        "distance": 154,
+        "estimatedTime": 105
+      },
+      "notes": ["En ruta sin incidencias"],
+      "createdAt": "2025-01-08T14:45:00Z",
+      "updatedAt": "2025-01-09T09:30:00Z"
+    },
+    {
+      "id": "6",
+      "trackingNumber": "TMS001239",
+      "origin": "Alicante, España",
+      "destination": "Murcia, España",
+      "status": "cancelled",
+      "priority": "low",
+      "weight": 320.5,
+      "customer": {
+        "name": "Isabel Torres",
+        "email": "isabel.torres@example.com",
+        "phone": "+34 612 789 345"
+      },
+      "estimatedDelivery": "2025-01-11T09:15:00Z",
+      "route": {
+        "distance": 82,
+        "estimatedTime": 60
+      },
+      "notes": ["Cancelado por el cliente", "Reembolso procesado"],
+      "createdAt": "2025-01-07T16:20:00Z",
+      "updatedAt": "2025-01-09T08:45:00Z"
+    },
+    {
+      "id": "7",
+      "trackingNumber": "TMS001240",
+      "origin": "Santander, España",
+      "destination": "León, España",
+      "status": "delivered",
+      "priority": "high",
+      "weight": 1450.75,
+      "customer": {
+        "name": "Antonio Morales",
+        "email": "antonio.morales@example.com",
+        "phone": "+34 689 234 567"
+      },
+      "driver": {
+        "id": "1",
+        "name": "Carlos Martínez",
+        "phone": "+34 654 321 098",
+        "vehicle": "ABC-1234"
+      },
+      "estimatedDelivery": "2025-01-07T17:00:00Z",
+      "actualDelivery": "2025-01-07T16:30:00Z",
+      "route": {
+        "distance": 194,
+        "estimatedTime": 130
+      },
+      "notes": ["Entregado satisfactoriamente", "Sin daños en la mercancía"],
+      "createdAt": "2025-01-05T10:15:00Z",
+      "updatedAt": "2025-01-07T16:30:00Z"
+    },
+    {
+      "id": "8",
+      "trackingNumber": "TMS001241",
+      "origin": "Cádiz, España",
+      "destination": "Córdoba, España",
+      "status": "in-transit",
+      "priority": "urgent",
+      "weight": 950.25,
+      "customer": {
+        "name": "Elena Vargas",
+        "email": "elena.vargas@example.com",
+        "phone": "+34 667 345 678"
+      },
+      "driver": {
+        "id": "5",
+        "name": "Diego Herrera",
+        "phone": "+34 634 567 891",
+        "vehicle": "MNO-7890"
+      },
+      "estimatedDelivery": "2025-01-10T11:45:00Z",
+      "route": {
+        "distance": 261,
+        "estimatedTime": 180
+      },
+      "notes": ["Carga prioritaria", "Seguimiento especial activado"],
+      "createdAt": "2025-01-08T13:20:00Z",
+      "updatedAt": "2025-01-09T14:10:00Z"
+    },
+    {
+      "id": "9",
+      "trackingNumber": "TMS001242",
+      "origin": "Toledo, España",
+      "destination": "Cuenca, España",
+      "status": "pending",
+      "priority": "medium",
+      "weight": 775.0,
+      "customer": {
+        "name": "Rafael Mendoza",
+        "email": "rafael.mendoza@example.com",
+        "phone": "+34 645 678 912"
+      },
+      "estimatedDelivery": "2025-01-13T14:20:00Z",
+      "route": {
+        "distance": 168,
+        "estimatedTime": 110
+      },
+      "notes": ["Esperando confirmación del cliente"],
+      "createdAt": "2025-01-09T08:45:00Z",
+      "updatedAt": "2025-01-09T08:45:00Z"
+    },
+    {
+      "id": "10",
+      "trackingNumber": "TMS001243",
+      "origin": "Pamplona, España",
+      "destination": "Logroño, España",
+      "status": "delivered",
+      "priority": "low",
+      "weight": 540.5,
+      "customer": {
+        "name": "Cristina Blanco",
+        "email": "cristina.blanco@example.com",
+        "phone": "+34 678 912 345"
+      },
+      "driver": {
+        "id": "2",
+        "name": "Ana López",
+        "phone": "+34 698 765 432",
+        "vehicle": "DEF-5678"
+      },
+      "estimatedDelivery": "2025-01-06T15:30:00Z",
+      "actualDelivery": "2025-01-06T14:45:00Z",
+      "route": {
+        "distance": 92,
+        "estimatedTime": 65
+      },
+      "notes": ["Entrega completada sin incidencias"],
+      "createdAt": "2025-01-04T11:30:00Z",
+      "updatedAt": "2025-01-06T14:45:00Z"
+    },
+    {
+      "id": "11",
+      "trackingNumber": "TMS001244",
+      "origin": "Oviedo, España",
+      "destination": "Gijón, España",
+      "status": "in-transit",
+      "priority": "high",
+      "weight": 1120.75,
+      "customer": {
+        "name": "Manuel Castro",
+        "email": "manuel.castro@example.com",
+        "phone": "+34 656 789 123"
+      },
+      "driver": {
+        "id": "6",
+        "name": "Sofía Ramírez",
+        "phone": "+34 612 345 789",
+        "vehicle": "PQR-2345"
+      },
+      "estimatedDelivery": "2025-01-10T16:15:00Z",
+      "route": {
+        "distance": 28,
+        "estimatedTime": 25
+      },
+      "notes": ["Trayecto corto", "Llegada prevista pronto"],
+      "createdAt": "2025-01-09T15:30:00Z",
+      "updatedAt": "2025-01-09T15:45:00Z"
+    },
+    {
+      "id": "12",
+      "trackingNumber": "TMS001245",
+      "origin": "Badajoz, España",
+      "destination": "Cáceres, España",
+      "status": "delayed",
+      "priority": "medium",
+      "weight": 890.25,
+      "customer": {
+        "name": "Patricia Serrano",
+        "email": "patricia.serrano@example.com",
+        "phone": "+34 634 567 890"
+      },
+      "driver": {
+        "id": "7",
+        "name": "Javier Romero",
+        "phone": "+34 689 123 456",
+        "vehicle": "STU-6789"
+      },
+      "estimatedDelivery": "2025-01-09T13:00:00Z",
+      "route": {
+        "distance": 90,
+        "estimatedTime": 70
+      },
+      "notes": ["Retraso por avería mecánica menor", "Reparación en curso"],
+      "createdAt": "2025-01-07T09:20:00Z",
+      "updatedAt": "2025-01-09T17:30:00Z"
+    },
+    {
+      "id": "13",
+      "trackingNumber": "TMS001246",
+      "origin": "Albacete, España",
+      "destination": "Ciudad Real, España",
+      "status": "pending",
+      "priority": "urgent",
+      "weight": 1680.0,
+      "customer": {
+        "name": "Roberto Gil",
+        "email": "roberto.gil@example.com",
+        "phone": "+34 623 456 789"
+      },
+      "estimatedDelivery": "2025-01-11T08:30:00Z",
+      "route": {
+        "distance": 144,
+        "estimatedTime": 95
+      },
+      "notes": ["Mercancía de alta prioridad", "Asignación urgente requerida"],
+      "createdAt": "2025-01-09T10:15:00Z",
+      "updatedAt": "2025-01-09T10:15:00Z"
+    },
+    {
+      "id": "14",
+      "trackingNumber": "TMS001247",
+      "origin": "Teruel, España",
+      "destination": "Castellón, España",
+      "status": "delivered",
+      "priority": "low",
+      "weight": 425.5,
+      "customer": {
+        "name": "Mónica Delgado",
+        "email": "monica.delgado@example.com",
+        "phone": "+34 612 789 345"
+      },
+      "driver": {
+        "id": "8",
+        "name": "Alejandro Vega",
+        "phone": "+34 667 234 567",
+        "vehicle": "VWX-1122"
+      },
+      "estimatedDelivery": "2025-01-05T12:00:00Z",
+      "actualDelivery": "2025-01-05T11:30:00Z",
+      "route": {
+        "distance": 138,
+        "estimatedTime": 90
+      },
+      "notes": ["Entrega anticipada", "Cliente muy satisfecho"],
+      "createdAt": "2025-01-03T14:45:00Z",
+      "updatedAt": "2025-01-05T11:30:00Z"
+    },
+    {
+      "id": "15",
+      "trackingNumber": "TMS001248",
+      "origin": "Jaén, España",
+      "destination": "Almería, España",
+      "status": "in-transit",
+      "priority": "medium",
+      "weight": 1350.75,
+      "customer": {
+        "name": "Fernando Ortega",
+        "email": "fernando.ortega@example.com",
+        "phone": "+34 689 345 678"
+      },
+      "driver": {
+        "id": "3",
+        "name": "Miguel Santos",
+        "phone": "+34 677 889 123",
+        "vehicle": "GHI-9012"
+      },
+      "estimatedDelivery": "2025-01-11T15:45:00Z",
+      "route": {
+        "distance": 220,
+        "estimatedTime": 150
+      },
+      "notes": ["Ruta por carreteras secundarias", "Tiempo estimado ajustado"],
+      "createdAt": "2025-01-08T16:30:00Z",
+      "updatedAt": "2025-01-09T11:20:00Z"
+    },
+    {
+      "id": "16",
+      "trackingNumber": "TMS001249",
+      "origin": "Segovia, España",
+      "destination": "Ávila, España",
+      "status": "cancelled",
+      "priority": "high",
+      "weight": 720.25,
+      "customer": {
+        "name": "Beatriz Navarro",
+        "email": "beatriz.navarro@example.com",
+        "phone": "+34 645 123 789"
+      },
+      "estimatedDelivery": "2025-01-10T10:30:00Z",
+      "route": {
+        "distance": 67,
+        "estimatedTime": 50
+      },
+      "notes": ["Cancelado por cambio de destino", "Nuevo envío programado"],
+      "createdAt": "2025-01-07T13:20:00Z",
+      "updatedAt": "2025-01-09T09:15:00Z"
+    },
+    {
+      "id": "17",
+      "trackingNumber": "TMS001250",
+      "origin": "Huesca, España",
+      "destination": "Lérida, España",
+      "status": "delivered",
+      "priority": "medium",
+      "weight": 980.0,
+      "customer": {
+        "name": "Ignacio Prieto",
+        "email": "ignacio.prieto@example.com",
+        "phone": "+34 678 567 890"
+      },
+      "driver": {
+        "id": "4",
+        "name": "Laura Ruiz",
+        "phone": "+34 656 789 234",
+        "vehicle": "JKL-3456"
+      },
+      "estimatedDelivery": "2025-01-08T14:15:00Z",
+      "actualDelivery": "2025-01-08T13:45:00Z",
+      "route": {
+        "distance": 123,
+        "estimatedTime": 85
+      },
+      "notes": ["Entrega sin problemas", "Documentación firmada"],
+      "createdAt": "2025-01-06T08:30:00Z",
+      "updatedAt": "2025-01-08T13:45:00Z"
+    },
+    {
+      "id": "18",
+      "trackingNumber": "TMS001251",
+      "origin": "Soria, España",
+      "destination": "Burgos, España",
+      "status": "in-transit",
+      "priority": "low",
+      "weight": 615.5,
+      "customer": {
+        "name": "Raquel Moreno",
+        "email": "raquel.moreno@example.com",
+        "phone": "+34 634 678 912"
+      },
+      "driver": {
+        "id": "9",
+        "name": "Rubén Castillo",
+        "phone": "+34 623 456 780",
+        "vehicle": "YZA-3344"
+      },
+      "estimatedDelivery": "2025-01-11T11:00:00Z",
+      "route": {
+        "distance": 142,
+        "estimatedTime": 100
+      },
+      "notes": ["Transporte regular", "Sin urgencia especial"],
+      "createdAt": "2025-01-08T17:45:00Z",
+      "updatedAt": "2025-01-09T08:30:00Z"
+    },
+    {
+      "id": "19",
+      "trackingNumber": "TMS001252",
+      "origin": "Palencia, España",
+      "destination": "Valladolid, España",
+      "status": "pending",
+      "priority": "high",
+      "weight": 1275.25,
+      "customer": {
+        "name": "Andrés Guerrero",
+        "email": "andres.guerrero@example.com",
+        "phone": "+34 612 345 678"
+      },
+      "estimatedDelivery": "2025-01-12T09:45:00Z",
+      "route": {
+        "distance": 45,
+        "estimatedTime": 40
+      },
+      "notes": ["Esperando disponibilidad de vehículo adecuado"],
+      "createdAt": "2025-01-09T12:30:00Z",
+      "updatedAt": "2025-01-09T12:30:00Z"
+    },
+    {
+      "id": "20",
+      "trackingNumber": "TMS001253",
+      "origin": "Girona, España",
+      "destination": "Tarragona, España",
+      "status": "delivered",
+      "priority": "urgent",
+      "weight": 1850.0,
+      "customer": {
+        "name": "Lucía Medina",
+        "email": "lucia.medina@example.com",
+        "phone": "+34 689 234 567"
+      },
+      "driver": {
+        "id": "10",
+        "name": "Pablo Herrero",
+        "phone": "+34 645 789 123",
+        "vehicle": "BCD-5566"
+      },
+      "estimatedDelivery": "2025-01-09T16:30:00Z",
+      "actualDelivery": "2025-01-09T15:50:00Z",
+      "route": {
+        "distance": 98,
+        "estimatedTime": 70
+      },
+      "notes": ["Entrega urgente completada exitosamente", "Cliente altamente satisfecho"],
+      "createdAt": "2025-01-08T07:15:00Z",
+      "updatedAt": "2025-01-09T15:50:00Z"
+    }
+  ],
+  "metadata": {
+    "totalShipments": 20,
+    "statusDistribution": {
+      "pending": 4,
+      "in-transit": 6,
+      "delivered": 7,
+      "delayed": 2,
+      "cancelled": 1
+    },
+    "priorityDistribution": {
+      "low": 4,
+      "medium": 8,
+      "high": 5,
+      "urgent": 3
+    },
+    "generatedAt": "2025-01-09T18:00:00Z",
+    "description": "Datos de prueba que cubren todos los estados de envíos: pendientes, en tránsito, entregados, retrasados y cancelados"
+  }
+}
