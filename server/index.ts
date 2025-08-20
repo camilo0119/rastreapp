@@ -23,7 +23,9 @@ const serverConfig: ServerConfig = {
 // Configuración de la base de datos
 const databaseConfig: DatabaseConfig = {
   uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/rastreapp',
-  options: {},
+  options: {
+    // MongoDB connection options (deprecated options removed)
+  },
 };
 
 // Middleware
@@ -104,7 +106,7 @@ const startServer = async (): Promise<void> => {
 // Manejo de señales de terminación
 process.on('SIGTERM', () => {
   console.log('🛑 Recibida señal SIGTERM, cerrando servidor...');
-  mongoose.connection.close(() => {
+  mongoose.connection.close().then(() => {
     console.log('✅ Conexión a MongoDB cerrada');
     process.exit(0);
   });
@@ -112,7 +114,7 @@ process.on('SIGTERM', () => {
 
 process.on('SIGINT', () => {
   console.log('🛑 Recibida señal SIGINT, cerrando servidor...');
-  mongoose.connection.close(() => {
+  mongoose.connection.close().then(() => {
     console.log('✅ Conexión a MongoDB cerrada');
     process.exit(0);
   });

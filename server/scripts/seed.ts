@@ -144,12 +144,12 @@ const generateShipmentsData = (drivers: any[], vehicles: any[]): Partial<IShipme
 
     const shipment: Partial<IShipment> = {
       trackingNumber: `TRK-${String(i).padStart(6, '0')}`,
-      origin,
-      destination,
-      status,
-      priority,
+      origin: origin!,
+      destination: destination!,
+      status: status!,
+      priority: priority!,
       weight: Math.floor(Math.random() * 2000) + 100,
-      customer,
+      customer: customer!,
       estimatedDelivery,
       actualDelivery,
       route: {

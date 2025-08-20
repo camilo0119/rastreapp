@@ -32,6 +32,7 @@ export interface IShipment extends Document {
   
   // Métodos de instancia
   updateStatus(newStatus: string, notes?: string): Promise<void>;
+  markAsDelivered(): Promise<void>;
 }
 
 // Interfaz para el modelo de Shipment con métodos estáticos
@@ -56,6 +57,19 @@ export interface IVehicle extends Document {
   nextMaintenance: Date;
   createdAt: Date;
   updatedAt: Date;
+  
+  // Métodos de instancia
+  assignDriver(driverId: string): Promise<IVehicle>;
+  release(): Promise<IVehicle>;
+  sendToMaintenance(): Promise<IVehicle>;
+  markOffline(): Promise<IVehicle>;
+  updateMaintenance(): Promise<IVehicle>;
+  
+  // Propiedades virtuales
+  daysUntilMaintenance: number;
+  needsMaintenanceSoon: boolean;
+  daysSinceLastMaintenance: number;
+  capacityInfo: string;
 }
 
 // Interfaz para el modelo de Vehicle con métodos estáticos
@@ -64,6 +78,8 @@ export interface IVehicleModel extends Model<IVehicle> {
   getByStatus(status: string): Promise<IVehicle[]>;
   getNeedingMaintenance(): Promise<IVehicle[]>;
   getAvailable(): Promise<IVehicle[]>;
+  getByType(type: string): Promise<IVehicle[]>;
+  getByCapacity(minCapacity: number, maxCapacity?: number): Promise<IVehicle[]>;
 }
 
 export interface IDriver extends Document {
@@ -103,6 +119,8 @@ export interface IDriverModel extends Model<IDriver> {
   getByStatus(status: string): Promise<IDriver[]>;
   getTopRated(limit?: number): Promise<IDriver[]>;
   getAvailable(): Promise<IDriver[]>;
+  getMostExperienced(limit?: number): Promise<IDriver[]>;
+  search(searchTerm: string): Promise<IDriver[]>;
 }
 
 // Tipos para las respuestas de la API
@@ -247,10 +265,7 @@ export interface AppError extends Error {
 // Tipos para configuración
 export interface DatabaseConfig {
   uri: string;
-  options: {
-    useNewUrlParser: boolean;
-    useUnifiedTopology: boolean;
-  };
+  options: Record<string, any>;
 }
 
 export interface ServerConfig {

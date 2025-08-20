@@ -6,7 +6,7 @@ import { DashboardStats, PerformanceMetrics, CacheEntry, IShipment } from '../ty
 
 const router = express.Router();
 
-// Cache simple en memoria
+// Cache on memory
 const cache = new Map<string, CacheEntry<any>>();
 const CACHE_DURATION = 2 * 60 * 1000; // 2 minutos para dashboard
 
@@ -65,9 +65,9 @@ router.get('/stats', async (req: Request, res: Response, next: NextFunction) => 
       timestamp: Date.now(),
     });
 
-    res.json(dashboardStats);
+    return res.json(dashboardStats);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -91,9 +91,9 @@ router.get('/recent-shipments', async (req: Request, res: Response, next: NextFu
       timestamp: Date.now(),
     });
 
-    res.json(recentShipments);
+    return res.json(recentShipments);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -167,9 +167,9 @@ router.get('/performance', async (req: Request, res: Response, next: NextFunctio
       timestamp: Date.now(),
     });
 
-    res.json(performance);
+    return res.json(performance);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -177,9 +177,9 @@ router.get('/performance', async (req: Request, res: Response, next: NextFunctio
 router.get('/urgent-shipments', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const urgentShipments = await Shipment.getUrgent();
-    res.json(urgentShipments);
+    return res.json(urgentShipments);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -187,9 +187,9 @@ router.get('/urgent-shipments', async (req: Request, res: Response, next: NextFu
 router.get('/delayed-shipments', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const delayedShipments = await Shipment.getDelayed();
-    res.json(delayedShipments);
+    return res.json(delayedShipments);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -197,9 +197,9 @@ router.get('/delayed-shipments', async (req: Request, res: Response, next: NextF
 router.get('/vehicles-maintenance', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const vehiclesNeedingMaintenance = await Vehicle.getNeedingMaintenance();
-    res.json(vehiclesNeedingMaintenance);
+    return res.json(vehiclesNeedingMaintenance);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -208,9 +208,9 @@ router.get('/top-drivers', async (req: Request, res: Response, next: NextFunctio
   try {
     const { limit = 5 } = req.query;
     const topDrivers = await Driver.getTopRated(parseInt(limit.toString()));
-    res.json(topDrivers);
+    return res.json(topDrivers);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -222,13 +222,13 @@ router.get('/available-resources', async (req: Request, res: Response, next: Nex
       Driver.getAvailable(),
     ]);
 
-    res.json({
+    return res.json({
       availableVehicles,
       availableDrivers,
       lastUpdated: new Date().toISOString(),
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -266,9 +266,9 @@ router.get('/shipments-by-status', async (req: Request, res: Response, next: Nex
       timestamp: Date.now(),
     });
 
-    res.json(distribution);
+    return res.json(distribution);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -304,9 +304,9 @@ router.get('/vehicles-by-type', async (req: Request, res: Response, next: NextFu
       timestamp: Date.now(),
     });
 
-    res.json(distribution);
+    return res.json(distribution);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -342,9 +342,9 @@ router.get('/drivers-by-experience', async (req: Request, res: Response, next: N
       timestamp: Date.now(),
     });
 
-    res.json(distribution);
+    return res.json(distribution);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 

@@ -7,14 +7,23 @@ WORKDIR /app
 # Copiar archivos de dependencias
 COPY package*.json ./
 
-# Instalar dependencias
-RUN npm ci --only=production
+# Instalar todas las dependencias (incluyendo devDependencies para el build)
+RUN npm ci
 
 # Copiar código fuente
 COPY . .
 
 # Compilar TypeScript del servidor
 RUN npm run server:build
+
+# Crear script de inicio que ejecute seed y luego el servidor
+RUN echo '#!/bin/sh' > /start.sh && \
+    echo 'echo "🌱 Ejecutando seed de datos..."' >> /start.sh && \
+    echo 'sleep 5' >> /start.sh && \
+    echo 'npm run seed || echo "⚠️ Seed falló, continuando..."' >> /start.sh && \
+    echo 'echo "🚀 Iniciando servidor..."' >> /start.sh && \
+    echo 'npm run server:start' >> /start.sh && \
+    chmod +x /start.sh
 
 # Crear usuario no-root
 RUN addgroup -g 1001 -S nodejs
@@ -28,4 +37,4 @@ USER nodejs
 EXPOSE 3001
 
 # Comando por defecto
-CMD ["npm", "run", "server:start"]
+CMD ["/start.sh"]

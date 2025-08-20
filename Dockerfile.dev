@@ -1,4 +1,4 @@
-# Dockerfile para desarrollo del frontend
+# Dockerfile para el frontend (desarrollo)
 FROM node:18-alpine
 
 # Establecer directorio de trabajo
@@ -7,14 +7,14 @@ WORKDIR /app
 # Copiar archivos de dependencias
 COPY package*.json ./
 
-# Instalar todas las dependencias (incluyendo devDependencies)
-RUN npm install
+# Instalar todas las dependencias
+RUN npm ci
 
 # Copiar código fuente
 COPY . .
 
-# Exponer puerto de desarrollo
+# Exponer puerto
 EXPOSE 3000
 
-# Comando por defecto para desarrollo
+# Comando por defecto (usar vite para desarrollo)
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

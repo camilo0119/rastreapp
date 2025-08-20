@@ -1,4 +1,4 @@
-# Dockerfile para desarrollo del servidor backend
+# Dockerfile para el servidor backend (desarrollo)
 FROM node:18-alpine
 
 # Establecer directorio de trabajo
@@ -7,14 +7,23 @@ WORKDIR /app
 # Copiar archivos de dependencias
 COPY package*.json ./
 
-# Instalar todas las dependencias (incluyendo devDependencies)
-RUN npm install
+# Instalar todas las dependencias
+RUN npm ci
 
 # Copiar código fuente
 COPY . .
 
+# Crear script de inicio que ejecute seed y luego el servidor
+RUN echo '#!/bin/sh' > /start.sh && \
+    echo 'echo "🌱 Ejecutando seed de datos..."' >> /start.sh && \
+    echo 'sleep 5' >> /start.sh && \
+    echo 'npm run seed || echo "⚠️ Seed falló, continuando..."' >> /start.sh && \
+    echo 'echo "🚀 Iniciando servidor..."' >> /start.sh && \
+    echo 'npm run server:dev' >> /start.sh && \
+    chmod +x /start.sh
+
 # Exponer puerto
 EXPOSE 3001
 
-# Comando por defecto para desarrollo
-CMD ["npm", "run", "server:dev"]
+# Comando por defecto
+CMD ["/start.sh"]

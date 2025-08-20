@@ -13,12 +13,12 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data_dev:/data/db
+      - mongodb_data:/data/db
       - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
-      - rastreapp-network-dev
+      - rastreapp-network
 
-  # MongoDB Express (opcional)
+  # MongoDB Express (opcional - interfaz web para MongoDB)
   mongo-express:
     image: mongo-express:latest
     container_name: rastreapp-mongo-express-dev
@@ -34,9 +34,9 @@ services:
     depends_on:
       - mongodb
     networks:
-      - rastreapp-network-dev
+      - rastreapp-network
 
-  # Servidor backend (desarrollo con hot reload)
+  # Servidor backend (desarrollo)
   server:
     build:
       context: .
@@ -53,36 +53,41 @@ services:
     depends_on:
       - mongodb
     networks:
-      - rastreapp-network-dev
+      - rastreapp-network
     volumes:
-      - .:/app
+      - ./server:/app/server
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
       - /app/node_modules
-    command: npm run server:dev
 
-  # Frontend (desarrollo con hot reload)
+  # Frontend (desarrollo)
   frontend:
     build:
       context: .
       dockerfile: Dockerfile.dev
     container_name: rastreapp-frontend-dev
     restart: unless-stopped
-    environment:
-      VITE_API_BASE_URL: http://localhost:3001/api
     ports:
       - "3000:3000"
     depends_on:
       - server
     networks:
-      - rastreapp-network-dev
+      - rastreapp-network
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      - ./vite.config.ts:/app/vite.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./tsconfig.app.json:/app/tsconfig.app.json
+      - ./tailwind.config.js:/app/tailwind.config.js
+      - ./postcss.config.js:/app/postcss.config.js
       - /app/node_modules
-    command: npm run dev
 
 volumes:
-  mongodb_data_dev:
+  mongodb_data:
     driver: local
 
 networks:
-  rastreapp-network-dev:
+  rastreapp-network:
     driver: bridge

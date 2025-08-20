@@ -91,13 +91,19 @@ Una aplicación moderna y completa de gestión de transporte construida con Reac
 git clone <repository-url>
 cd rastreapp
 
-# Levantar todo el stack con Docker
+# Levantar todo el stack con Docker (desarrollo - recomendado)
+docker-compose -f docker-compose.dev.yml up -d
+
+# O levantar el stack de producción
 docker-compose up -d
+
+# ✨ Los datos demo se cargan automáticamente al iniciar el servidor
 
 # La aplicación estará disponible en:
 # Frontend: http://localhost:3000
 # API: http://localhost:3001/api
 # MongoDB: localhost:27017
+# MongoDB Express: http://localhost:8081 (admin/password123)
 ```
 
 ### Opción 2: Instalación Manual
@@ -133,8 +139,11 @@ rastreapp/
 ### Comandos Docker
 
 ```bash
-# Levantar todo el stack
+# Levantar todo el stack (producción)
 docker-compose up -d
+
+# Levantar todo el stack (desarrollo - recomendado)
+docker-compose -f docker-compose.dev.yml up -d
 
 # Ver logs en tiempo real
 docker-compose logs -f
@@ -148,7 +157,7 @@ docker-compose up -d --build
 # Solo levantar base de datos
 docker-compose up -d mongodb
 
-# Ejecutar seed de datos
+# Ejecutar seed de datos manualmente (opcional - ya se ejecuta automáticamente)
 docker-compose exec server npm run seed
 ```
 
@@ -156,7 +165,34 @@ docker-compose exec server npm run seed
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:3001/api
 - **MongoDB**: localhost:27017
-- **MongoDB Express**: http://localhost:8081 (opcional)
+- **MongoDB Express**: http://localhost:8081 (admin/password123)
+
+### Configuración de Desarrollo vs Producción
+
+#### Desarrollo (Recomendado para desarrollo local)
+```bash
+# Usar configuración de desarrollo
+docker-compose -f docker-compose.dev.yml up -d
+
+# Características:
+# - Hot reload para frontend y backend
+# - TypeScript ejecutado directamente con tsx
+# - Volúmenes montados para desarrollo en tiempo real
+# - Sin compilación de TypeScript
+# - Seed de datos automático (datos demo incluidos)
+```
+
+#### Producción
+```bash
+# Usar configuración de producción
+docker-compose up -d
+
+# Características:
+# - Frontend compilado y servido por nginx
+# - Backend compilado a JavaScript
+# - Optimizado para rendimiento
+# - Seed de datos automático (datos demo incluidos)
+```
 
 ## 🔧 Instalación Manual
 
@@ -463,39 +499,68 @@ npm run start
 - **Métricas**: `/api/dashboard/stats`
 - **Logs**: Winston configurado para producción
 
-## 🤝 Contribución
+## 🔧 Solución de Problemas
 
-### Flujo de Contribución
-1. **Fork** el proyecto
-2. **Crear rama** para tu feature (`git checkout -b feature/AmazingFeature`)
-3. **Commit** tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** a la rama (`git push origin feature/AmazingFeature`)
-5. **Abrir Pull Request**
+### Errores Comunes
 
-### Estándares de Código
-- **TypeScript estricto** obligatorio
-- **ESLint** debe pasar sin errores
-- **Pruebas** para nuevas funcionalidades
-- **Documentación** actualizada
-
-### Estructura de Commits
+#### Error de TypeScript en Docker
+Si encuentras errores de compilación de TypeScript al usar `docker-compose up -d`, usa la configuración de desarrollo:
+```bash
+docker-compose -f docker-compose.dev.yml up -d
 ```
-feat: agregar búsqueda global en header
-fix: corregir pérdida de foco en input de búsqueda
-docs: actualizar README con instrucciones Docker
-test: agregar pruebas para componente Shipments
+
+#### Puerto ya en uso
+Si los puertos 3000, 3001, 27017 o 8081 están ocupados:
+```bash
+# Detener todos los contenedores
+docker-compose down
+docker-compose -f docker-compose.dev.yml down
+
+# Verificar qué está usando los puertos
+lsof -i :3000
+lsof -i :3001
+lsof -i :27017
+lsof -i :8081
+```
+
+#### Problemas de conexión a MongoDB
+```bash
+# Verificar que MongoDB esté corriendo
+docker-compose -f docker-compose.dev.yml logs mongodb
+
+# Reiniciar solo MongoDB
+docker-compose -f docker-compose.dev.yml restart mongodb
+```
+
+#### Problemas con el seed de datos
+El seed se ejecuta automáticamente al iniciar el servidor, pero si hay problemas:
+```bash
+# Ejecutar seed manualmente si es necesario
+docker-compose -f docker-compose.dev.yml exec server npm run seed
+
+# O reiniciar todo el stack para que se ejecute automáticamente
+docker-compose -f docker-compose.dev.yml down
+docker-compose -f docker-compose.dev.yml up -d
+```
+
+### Logs y Debugging
+```bash
+# Ver logs de todos los servicios
+docker-compose -f docker-compose.dev.yml logs -f
+
+# Ver logs de un servicio específico
+docker-compose -f docker-compose.dev.yml logs -f server
+docker-compose -f docker-compose.dev.yml logs -f frontend
+docker-compose -f docker-compose.dev.yml logs -f mongodb
+
+# Entrar al contenedor del servidor
+docker-compose -f docker-compose.dev.yml exec server sh
 ```
 
 ## 📞 Soporte
 
-### Recursos
-- **Documentación**: [Wiki del proyecto]
-- **Issues**: [GitHub Issues]
-- **Discusiones**: [GitHub Discussions]
-
 ### Contacto
-- **Email**: soporte@rastreapp.com
-- **Slack**: [Canal de soporte]
+- **Email**: camilo0119@gmail.com
 
 ## 📄 Licencia
 
